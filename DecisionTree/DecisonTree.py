@@ -1,5 +1,6 @@
 from math import log
 import operator
+import pickle
 def createDataset():
     dataSet = [[1, 1, 'yes'],
                [1, 1, 'yes'],
@@ -51,11 +52,51 @@ def SplitDataSet(dataset,axis,value):              #根据特征划分数据集
 #多数表决
 #当处理完所有的属性后，类标签仍不唯一，通过多数表决定义叶子节点
 def majorityCnt(classList):
-    classCount = {} #数据字典存储每个类标签出现的频率
-    for vote in classCount:
-        if vote not in classCount.keys():
-            classCount[vote] = 0
+    classCount = {}
+    for vote in classList:
+
+        if vote not in classCount: classCount[vote] = 0
         classCount[vote] += 1
-    #按照标签出现的频率降序排序
-    sortedClassCount = sorted(classCount.items(), key = operator.itemgetter(1), reverse = True)
-    return sortedClassCount[0][0]   #返回出现次数最多的标签
+    sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(1), reverse=True)
+    return sortedClassCount[0][0]
+def createTree(dataSet,labels):
+    classList = [example[-1] for example in dataSet]
+    if classList.count(classList[0]) == len(classList):
+        return classList[0]  # stop splitting when all of the classes are equal
+    if len(dataSet[0]) == 1:  # stop splitting when there are no more features in dataSet
+        return majorityCnt(classList)
+    bestFeat = chosebestfeature(dataSet)
+    bestFeatLabel = labels[bestFeat]
+    myTree = {bestFeatLabel: {}}
+    del (labels[bestFeat])
+    featValues = [example[bestFeat] for example in dataSet]
+    uniqueVals = set(featValues)
+    for value in uniqueVals:
+        subLabels = labels[:]  # copy all of labels, so trees don't mess up existing labels
+        myTree[bestFeatLabel][value] = createTree(SplitDataSet(dataSet, bestFeat, value), subLabels)
+    return myTree
+def classify(inputTree,featLabels,testVec):
+    firstStr =list(inputTree.keys())[0]
+    secondDict = inputTree[firstStr]
+    featIndex = featLabels.index(firstStr)
+    key = testVec[featIndex]
+    valueOfFeat = secondDict[key]
+    if isinstance(valueOfFeat, dict):
+        classLabel = classify(valueOfFeat, featLabels, testVec)
+    else: classLabel = valueOfFeat
+    return classLabel
+def storeTree(mytree,filename):
+    fw=open(filename,"w")
+    pickle.dump(mytree,fw)
+    fw.close()
+def loadtree(filename):
+    with open(filename, 'rb') as f:
+        # The protocol version used is detected automatically, so we do not
+        # have to specify it.
+        data = pickle.load(f)
+    return data
+
+
+
+
+
