@@ -60,12 +60,17 @@
         <entry file="file://$PROJECT_DIR$/treePlotter.py">
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+            <state relative-caret-position="276">
+              <caret line="75" column="79" lean-forward="true" selection-start-line="75" selection-start-column="79" selection-end-line="75" selection-end-column="79" />
+=======
+<<<<<<< HEAD
             <state relative-caret-position="1840">
               <caret line="80" column="14" lean-forward="false" selection-start-line="80" selection-start-column="14" selection-end-line="80" selection-end-column="14" />
 =======
             <state relative-caret-position="-1334">
               <caret line="5" column="31" lean-forward="true" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
 >>>>>>> 77f0a6e7c57da84fde7921a900e1b47e39f909e1
+>>>>>>> 3406f94538376b46f7df3c78961bfc0bed9436de
               <folding />
             </state>
           </provider>
@@ -492,8 +497,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/treePlotter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1334">
-          <caret line="5" column="31" lean-forward="true" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+        <state relative-caret-position="276">
+          <caret line="75" column="79" lean-forward="true" selection-start-line="75" selection-start-column="79" selection-end-line="75" selection-end-column="79" />
           <folding />
         </state>
       </provider>
