@@ -20,5 +20,5 @@ ymat=mat(labels)
 # print(corrcoef(yhat1.T,ymat))
 # ax.plot(xcopy[:,1],yhat)           #构造线段
 #plt.show()
-print(xmat[1,:])
-print(re.lwlr(xmat[0],xmat,ymat,1.0))
+print(xmat[0])
+print(re.lwlr(xmat[0],dataset,labels,0.001))

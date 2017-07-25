@@ -22,12 +22,12 @@ def getRegression(X,y):
     w=Xvalue.I*(Xmat.T*ymat.T)
     return w
 
-def lwlr(testPoint,X,y,k=1.0):
+def lwlr(testPoint,X,y,k):
     Xmat = mat(X)
     ymat = mat(y).T
     weight=mat(eye((len(Xmat))))
     for i in range(len(Xmat)):
-        diff=testPoint-Xmat[i:]
+        diff=testPoint-Xmat[i,:]
         weight[i,i]=exp(diff*diff.T/(-2.0*k**2))
     Xvalue = Xmat.T *(weight* Xmat)
     if linalg.det(Xvalue) == 0.0:
