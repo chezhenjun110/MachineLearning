@@ -7,11 +7,11 @@ from numpy import *
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
-import logRegres
+import LogisticReg as lr
 
-dataMat,labelMat=logRegres.loadDataSet()
+dataMat,labelMat=lr.loadDataSet()
 dataArr = array(dataMat)
-weights = logRegres.stocGradAscent0(dataArr,labelMat)
+weights = lr.stocGradAscent0(dataArr,labelMat)
 
 n = shape(dataArr)[0] #number of points to create
 xcord1 = []; ycord1 = []

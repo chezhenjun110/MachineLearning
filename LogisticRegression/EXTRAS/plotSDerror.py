@@ -7,7 +7,7 @@ from numpy import *
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
-import logRegres
+import LogisticReg as lr
 
 def stocGradAscent0(dataMatrix, classLabels):
     m,n = shape(dataMatrix)
@@ -16,7 +16,7 @@ def stocGradAscent0(dataMatrix, classLabels):
     weightsHistory=zeros((500*m,n))
     for j in range(500):
         for i in range(m):
-            h = logRegres.sigmoid(sum(dataMatrix[i]*weights))
+            h = lr.sigmoid(sum(dataMatrix[i]*weights))
             error = classLabels[i] - h
             weights = weights + alpha * error * dataMatrix[i]
             weightsHistory[j*m + i,:] = weights
@@ -32,17 +32,17 @@ def stocGradAscent1(dataMatrix, classLabels):
         for i in range(m):
             alpha = 4/(1.0+j+i)+0.01
             randIndex = int(random.uniform(0,len(dataIndex)))
-            h = logRegres.sigmoid(sum(dataMatrix[randIndex]*weights))
+            h = lr.sigmoid(sum(dataMatrix[randIndex]*weights))
             error = classLabels[randIndex] - h
             #print error
             weights = weights + alpha * error * dataMatrix[randIndex]
             weightsHistory[j*m + i,:] = weights
             del(dataIndex[randIndex])
-    print weights
+    print(weights)
     return weightsHistory
     
 
-dataMat,labelMat=logRegres.loadDataSet()
+dataMat,labelMat=lr.loadDataSet()
 dataArr = array(dataMat)
 myHist = stocGradAscent1(dataArr,labelMat)
 
