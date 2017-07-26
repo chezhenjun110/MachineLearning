@@ -20,5 +20,11 @@ ymat=mat(labels)
 # print(corrcoef(yhat1.T,ymat))
 # ax.plot(xcopy[:,1],yhat)           #构造线段
 #plt.show()
-print(xmat[0])
-print(re.lwlr(xmat[0],dataset,labels,0.001))
+yHat=re.lwlrTest(dataset,dataset,labels,0.01)
+srtind=xmat[:,1].argsort(0)
+xsort=xmat[srtind][:,0,:]
+fig=plt.figure()
+ax=fig.add_subplot(111)      #控制坐标系的大小
+ax.plot(xsort[:,1],yHat[srtind])
+ax.scatter(xmat[:,1].flatten().A[0],mat(labels).T.flatten().A[0],s=2,c="red")
+plt.show()
