@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD:LinearRegression/.idea/modules.xml
       <module fileurl="file://$PROJECT_DIR$/.idea/LinearRegression.iml" filepath="$PROJECT_DIR$/.idea/LinearRegression.iml" />
       <module fileurl="file://$PROJECT_DIR$/../.idea/MachineLearningInAction.iml" filepath="$PROJECT_DIR$/../.idea/MachineLearningInAction.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/KNN.iml" filepath="$PROJECT_DIR$/.idea/KNN.iml" />
+>>>>>>> bd29a128bd9a1bc359e6a78de17bef40b0601766:KNN/.idea/modules.xml
     </modules>
   </component>
 </project>

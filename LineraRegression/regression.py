@@ -41,3 +41,33 @@ def lwlrTest(testArr,X,y,k=1.0):
     for i in range(m):
         yhat[i]=lwlr(testArr[i],X,y,k)
     return yhat
+def rssError(y,yhat):
+    return ((y-yhat)**2).sum()
+def ridgeRegre(xmat,ymat,lam=0.2):
+
+    xValue=xmat.T*xmat
+    denom=xValue+eye(shape(xmat)[1])*lam
+    if linalg.det(denom)==0.0:
+        print("不可逆！")
+    w=denom.I*(xmat.T*ymat)
+    return w
+def ridgeTest(xArr,yArr):
+    xMat = mat(xArr); yMat=mat(yArr).T
+    yMean = mean(yMat,0)
+    yMat = yMat - yMean     #to eliminate X0 take mean off of Y
+    #regularize X's
+    xMeans = mean(xMat,0)   #calc mean then subtract it off
+    xVar = var(xMat,0)      #calc variance of Xi then divide by it
+    xMat = (xMat - xMeans)/xVar
+    numTestPts = 30
+    wMat = zeros((numTestPts,shape(xMat)[1]))
+    for i in range(numTestPts):
+        ws = ridgeRegre(xMat,yMat,exp(i-10))
+        wMat[i,:]=ws.T
+    return wMat
+def regularize(xMat):#regularize by columns
+    inMat = xMat.copy()
+    inMeans = mean(inMat,0)   #calc mean then subtract it off
+    inVar = var(inMat,0)      #calc variance of Xi then divide by it
+    inMat = (inMat - inMeans)/inVar
+    return inMat
